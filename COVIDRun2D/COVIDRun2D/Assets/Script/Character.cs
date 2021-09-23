@@ -28,7 +28,7 @@ public class Character : MonoBehaviour
 
         if (CrossPlatformInputManager.GetButtonDown("Jump") && rb.velocity.y == 0)
         {
-            rb.AddForce(Vector2.up * 900f);
+            rb.AddForce(Vector2.up * 700f);
         }
 
         if(Mathf.Abs(dirX) > 0 && rb.velocity.y == 0)
@@ -78,5 +78,20 @@ public class Character : MonoBehaviour
             localScale.x *= -1;
         }
         transform.localScale = localScale;
+    }
+
+
+     private void OnTriggerEnter2D(Collider2D other) {
+         Debug.Log(other.gameObject.name);
+        var colliderName = other.gameObject.name;
+         if(colliderName.ToLower().Contains("virus"))
+         {
+             Debug.Log("I am a Virus");
+             
+                  var shieldedPrefab = Resources.Load("Prefab/shield");
+                var shielded = GameObject.Instantiate(shieldedPrefab,new Vector2(dirX,transform.position.y),transform.rotation);
+
+                
+         }
     }
 }
