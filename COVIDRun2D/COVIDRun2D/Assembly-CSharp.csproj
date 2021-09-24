@@ -40,6 +40,9 @@
      <Compile Include="Assets\enemy.cs" />
      <Compile Include="Assets\deployEnemies.cs" />
      <Compile Include="Assets\enemyCollide.cs" />
+     <Compile Include="Assets\shield.cs" />
+     <Compile Include="Assets\deployPowerups.cs" />
+     <Compile Include="Assets\shieldSpawner.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.19f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
