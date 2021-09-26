@@ -47,6 +47,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Script\LevelSelect.cs" />
      <Compile Include="Assets\Script\Character.cs" />
      <Compile Include="Assets\deployPowerups.cs" />
      <Compile Include="Assets\enemy.cs" />
