@@ -2,124 +2,292 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using TMPro;
 
-public class Character: MonoBehaviour {
-        private Rigidbody2D rb;
-        private Animator anim;
-        private float moveSpeed;
-        private float dirX;
-        private bool facingRight = true;
-        private Vector3 localScale;
+public class Character : MonoBehaviour
+{
 
-        GameObject shield;
-        private bool isShielded;
 
-        private float speedDuration = 5.0f; // seconds
+    private Rigidbody2D rb;
+    private Animator anim;
+    private float moveSpeed;
+    private float dirX;
+    private bool facingRight = true;
+    private Vector3 localScale;
 
-        // Start is called before the first frame update
-        void Start() {
-                rb = GetComponent < Rigidbody2D > ();
-                anim = GetComponent < Animator > ();
-                localScale = transform.localScale;
-                moveSpeed = 5f;
+    GameObject shield;
+    public bool isShielded = false;
 
-                isShielded = false;
+    private float speedDuration = 5.0f; // seconds
 
-                 shield = GameObject.Instantiate(Resources.Load("Prefab/shield"), transform.position, transform.rotation) as GameObject;
-                shield.SetActive(false);
-        }
+    public TextMeshProUGUI textScore;
+    public int score = 0;
 
-        // Update is called once per frame
-        void Update() {
+    float CountFPS = 30f;
 
-                dirX = CrossPlatformInputManager.GetAxis("Horizontal") * moveSpeed;
+    int multiplier = 2;
 
-                if ((CrossPlatformInputManager.GetButtonDown("Jump") ||
-                                Input.GetKeyDown(KeyCode.UpArrow) ||
-                                Input.GetKeyDown(KeyCode.W)) && rb.velocity.y == 0) {
-                        rb.AddForce(Vector2.up * 700f);
-                }
+    int scoreAdd = 0;
+    int scoreSub = 0;
 
-                if (Mathf.Abs(dirX) > 0 && rb.velocity.y == 0) {
-                        anim.SetBool("isRunning", true);
-                } else {
-                        anim.SetBool("isRunning", false);
-                }
+    int scoreHolder = 0;
 
-                if (rb.velocity.y == 0) {
-                        anim.SetBool("isJumping", false);
-                        anim.SetBool("isFalling", false);
-                }
 
-                if (rb.velocity.y > 0) {
-                        anim.SetBool("isJumping", true);
-                }
+   public GameObject[] lifes;
 
-                if (rb.velocity.y < 0) {
-                        anim.SetBool("isJumping", false);
-                        anim.SetBool("isFalling", true);
-                }
+    int lifeCount = 5;
+    // Start is called before the first frame update
 
-                ShieldMode();
+    public GameOverScreen gameOverScreen;
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        localScale = transform.localScale;
+        moveSpeed = 5f;
 
-        }
 
-        private void FixedUpdate() {
+        scoreAdd = Random.Range(800, 1000);
+        scoreSub = Random.Range(-800, -1000);
+        scoreHolder = scoreAdd;
 
-                rb.velocity = new Vector2(dirX, rb.velocity.y);
-              
-        }
 
-        private void LateUpdate() {
-                if (dirX > 0) {
-                        facingRight = true;
-                } else if (dirX < 0) {
-                        facingRight = false;
-                }
 
-                if (((facingRight) && (localScale.x < 0)) || ((!facingRight) && (localScale.x > 0))) {
-                        localScale.x *= -1;
-                }
-                transform.localScale = localScale;
-        }
+        shield = GameObject.Instantiate(Resources.Load("Prefab/shield"), transform.position, transform.rotation) as GameObject;
+        shield.SetActive(false);
+    }
 
-        private void OnTriggerEnter2D(Collider2D other) {
-                Debug.Log(other.gameObject.name);
-                var colliderName = other.gameObject.name;
-                  if (colliderName.ToLower().Contains("virus")) {
+    // Update is called once per frame
+    void Update()
+    {
 
-                     
+        dirX = CrossPlatformInputManager.GetAxis("Horizontal") * moveSpeed;
 
-                }
-                if (colliderName.ToLower().Contains("shieldspawn")) {
-
-                               shield.SetActive(true);
-                               Debug.Log("I am a Shield");
-                               Destroy(other.gameObject);
-                               Debug.Log(speedDuration);
-                               StartCoroutine(GameObjectDestroyer(shield,speedDuration,true));
-
-                }
-        }
-
-         void ShieldMode()
+        if ((CrossPlatformInputManager.GetButtonDown("Jump") ||
+                        Input.GetKeyDown(KeyCode.UpArrow) ||
+                        Input.GetKeyDown(KeyCode.W)) && rb.velocity.y == 0)
         {
-                if (shield.activeSelf) {
-                    //    Debug.Log("Shielded");
-                        shield.transform.position = transform.position;
-                        
-                } else {
-
-                }
+            rb.AddForce(Vector2.up * 700f);
         }
 
-        IEnumerator GameObjectDestroyer(GameObject obj , float duration,bool status)
+        if (Mathf.Abs(dirX) > 0 && rb.velocity.y == 0)
         {
-            while(status == true)
+            anim.SetBool("isRunning", true);
+        }
+        else
+        {
+            anim.SetBool("isRunning", false);
+        }
+
+        if (rb.velocity.y == 0)
+        {
+            anim.SetBool("isJumping", false);
+            anim.SetBool("isFalling", false);
+        }
+
+        if (rb.velocity.y > 0)
+        {
+            anim.SetBool("isJumping", true);
+        }
+
+        if (rb.velocity.y < 0)
+        {
+            anim.SetBool("isJumping", false);
+            anim.SetBool("isFalling", true);
+        }
+
+
+        scoreAdd = Random.Range(800, 1000);
+        scoreSub = Random.Range(-800, -1000);
+        scoreHolder = scoreAdd;
+
+        Debug.Log("Score Add: " + scoreAdd);
+        Debug.Log("Score Sub: " + scoreSub);
+        Debug.Log("Score Holder: " + scoreHolder);
+
+
+        ShieldMode();
+
+    }
+
+    private void FixedUpdate()
+    {
+
+        rb.velocity = new Vector2(dirX, rb.velocity.y);
+
+    }
+
+    private void LateUpdate()
+    {
+        if (dirX > 0)
+        {
+            facingRight = true;
+        }
+        else if (dirX < 0)
+        {
+            facingRight = false;
+        }
+
+        if (((facingRight) && (localScale.x < 0)) || ((!facingRight) && (localScale.x > 0)))
+        {
+            localScale.x *= -1;
+        }
+        transform.localScale = localScale;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log(other.gameObject.name);
+        var colliderName = other.gameObject.name;
+        if (colliderName.ToLower().Contains("virus"))
+        {
+            Score(true);
+
+        }
+        if (colliderName.ToLower().Contains("shieldspawn"))
+        {
+
+            shield.SetActive(true);
+            Debug.Log("I am a Shield");
+            Destroy(other.gameObject);
+            // Debug.Log(speedDuration);
+            isShielded = true;
+            StartCoroutine(ShieldObject(shield, speedDuration));
+
+        }
+    }
+
+    Coroutine cScoreCounter;
+    public void Score(bool status)
+    {
+        if (status)
+        {
+            //  score += 1000;
+            //  textScore.text = score.ToString();
+            if (cScoreCounter != null)
             {
-                yield return new WaitForSeconds(duration);        
-                obj.SetActive(false);   
-                Debug.Log("Shield"+isShielded);
+                StopCoroutine(cScoreCounter);
+            }
+            StartCoroutine(ScoreCounter(0.5f, scoreHolder));
+
+            Debug.Log("Score Added : " + scoreHolder);
+        }
+        else
+        {
+            if (cScoreCounter != null)
+            {
+                StopCoroutine(cScoreCounter);
+            }
+            StartCoroutine(ScoreCounter(0.5f, scoreSub));
+
+            Debug.Log("Score Decrease : " + scoreSub);
+        }
+
+
+    }
+    void ShieldMode()
+    {
+        if (shield.activeSelf)
+        {
+            shield.transform.position = transform.position;
+
+
+        }
+        else
+        {
+
+        }
+    }
+
+    void VaccineMOde()
+    {
+
+    }
+
+    IEnumerator ShieldObject(GameObject obj, float duration)
+    {
+        scoreHolder = scoreAdd * multiplier;
+        while (isShielded == true)
+        {
+            yield return new WaitForSeconds(duration);
+            obj.SetActive(false);
+            scoreHolder = scoreAdd;
+            isShielded = false;
+            //  Debug.Log("Shield " + isShielded);
+
+        }
+
+    }
+
+    IEnumerator ScoreCounter(float duration, int relativeScore)
+    {
+        WaitForSeconds wait = new WaitForSeconds(1f / CountFPS);
+        int previousScore = score;
+        int newScore = (previousScore + relativeScore);
+        int stepAmount;
+        if (newScore - previousScore < 0)
+        {
+            stepAmount = Mathf.FloorToInt((newScore - previousScore) / (CountFPS * duration));
+        }
+        else
+        {
+            stepAmount = Mathf.CeilToInt((newScore - previousScore) / (CountFPS * duration));
+        }
+
+        if (previousScore < newScore)
+        {
+
+            while (previousScore < newScore)
+            {
+                previousScore += stepAmount;
+                if (previousScore > newScore)
+                {
+                    previousScore = newScore;
+
+                }
+                score = previousScore;
+                textScore.text = previousScore.ToString();
+
+
+                yield return wait;
+            }
+
+
+        }
+
+        else
+        {
+            while (previousScore > newScore)
+            {
+                previousScore += stepAmount;
+                if (previousScore < newScore)
+                {
+                    previousScore = newScore;
+                }
+                score = previousScore;
+                textScore.text = previousScore.ToString();
+
+
+                yield return wait;
             }
         }
+    }
+
+
+    public void DecreaseLife(int damage)
+    {
+        if (lifeCount >= 1)
+        {
+            lifeCount -= damage;
+            Destroy(lifes[lifeCount].gameObject);
+            if (lifeCount < 1)
+            {
+                Debug.Log("You are dead!");
+                textScore.text = "";
+                gameOverScreen.Setup(score);
+                Time.timeScale = 0;
+            }
+        }
+
+    }
 }

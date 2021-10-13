@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class deployPowerups: MonoBehaviour {
+        
         public GameObject powerupPrefab;
-        public float respawnTime = 5.0f;
+        public float respawnTime = 10.0f;
         private Vector2 screenBounds;
         // Start is called before the first frame update
         void Start() {
