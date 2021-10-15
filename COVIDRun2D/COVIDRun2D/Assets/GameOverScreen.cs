@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+
 public class GameOverScreen : MonoBehaviour
 {
-   
-   public TextMeshProUGUI pointsText;
+    public TextMeshProUGUI pointsText;
 
     public Button btnPlayAgain;
    public void Start()

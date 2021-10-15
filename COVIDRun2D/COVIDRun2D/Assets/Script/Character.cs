@@ -35,7 +35,7 @@ public class Character : MonoBehaviour
 
    public GameObject[] lifes;
 
-    int lifeCount = 5;
+    int lifeCount = 1;
     // Start is called before the first frame update
 
     public GameOverScreen gameOverScreen;
@@ -97,13 +97,13 @@ public class Character : MonoBehaviour
         }
 
 
-        scoreAdd = Random.Range(800, 1000);
+            scoreAdd = Random.Range(800, 1000);
         scoreSub = Random.Range(-800, -1000);
         scoreHolder = scoreAdd;
 
-        Debug.Log("Score Add: " + scoreAdd);
-        Debug.Log("Score Sub: " + scoreSub);
-        Debug.Log("Score Holder: " + scoreHolder);
+      //  Debug.Log("Score Add: " + scoreAdd);
+       // Debug.Log("Score Sub: " + scoreSub);
+      //  Debug.Log("Score Holder: " + scoreHolder);
 
 
         ShieldMode();
@@ -170,7 +170,7 @@ public class Character : MonoBehaviour
             }
             StartCoroutine(ScoreCounter(0.5f, scoreHolder));
 
-            Debug.Log("Score Added : " + scoreHolder);
+          //  Debug.Log("Score Added : " + scoreHolder);
         }
         else
         {
@@ -180,7 +180,7 @@ public class Character : MonoBehaviour
             }
             StartCoroutine(ScoreCounter(0.5f, scoreSub));
 
-            Debug.Log("Score Decrease : " + scoreSub);
+           // Debug.Log("Score Decrease : " + scoreSub);
         }
 
 
@@ -282,12 +282,12 @@ public class Character : MonoBehaviour
             Destroy(lifes[lifeCount].gameObject);
             if (lifeCount < 1)
             {
+                anim.SetTrigger("isDead");
                 Debug.Log("You are dead!");
                 textScore.text = "";
                 gameOverScreen.Setup(score);
                 Time.timeScale = 0;
             }
         }
-
     }
 }
