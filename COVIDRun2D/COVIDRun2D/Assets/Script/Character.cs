@@ -283,11 +283,20 @@ public class Character : MonoBehaviour
             if (lifeCount < 1)
             {
                 anim.SetTrigger("isDead");
-                Debug.Log("You are dead!");
+                StartCoroutine(DeathAnimTrigger());
+                
+            }
+        }
+    }
+
+    private IEnumerator DeathAnimTrigger()
+    {
+        
+        yield return new WaitForSeconds(0.5f);
+
+        Debug.Log("You are dead!");
                 textScore.text = "";
                 gameOverScreen.Setup(score);
                 Time.timeScale = 0;
-            }
-        }
     }
 }
