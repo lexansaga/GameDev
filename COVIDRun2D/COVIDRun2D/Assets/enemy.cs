@@ -33,42 +33,7 @@ public class enemy : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        //Debug.Log(other.gameObject.name);
-        if (other.gameObject.name.ToLower() == "character")
-        {
-            //Character Hit
-            Destroy(this.gameObject);
-
-        }
-        else if (other.gameObject.name.ToLower() == "floor")
-        {
-            //Floor Hit
-
-            if (life != 0)
-            {
-                life--;
-                Debug.Log(life);
-                // Life Depleting
-
-                character.Score(false);
-                character.DecreaseLife(1);
-            }
-            else
-            {
-                Debug.Log("GameOver");
-                // Game Over
-            }
-
-            Debug.Log("Floor asd");
-            //   rb.velocity = new Vector2(rb.position.x,rb.position.y);
-            Destroy(this.gameObject);
-
-
-        }
-        else
-        {
-            //Other
-        }
+       
     }
 
 }

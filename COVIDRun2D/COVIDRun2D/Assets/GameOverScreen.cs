@@ -18,9 +18,17 @@ public class GameOverScreen : MonoBehaviour
    {
        SceneManager.LoadScene("Level1");
    }
+   public void LevelSelect()
+   {
+       SceneManager.LoadScene("LevelSelect");
+   }
    public void Setup(int score)
    {
        gameObject.SetActive(true);
        pointsText.text = score.ToString();
+
+        string difficulty = TextDB.ReadText(@"Assets\Resources\TextDB\LevelInfo.txt").Split(',')[3].Split(':')[1];
+        Debug.Log(difficulty);
+        TextDB.WriteString(@$"Assets\Resources\TextDB\Score{difficulty}.txt",score.ToString());
    }
 }

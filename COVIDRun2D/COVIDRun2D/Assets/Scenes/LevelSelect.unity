@@ -181,8 +181,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_Font: {fileID: 12800000, guid: 9b871e9c66680c842a2fe9d5d8efa8a4, type: 3}
+    m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -214,6 +214,7 @@ GameObject:
   - component: {fileID: 718080343}
   - component: {fileID: 718080342}
   - component: {fileID: 718080341}
+  - component: {fileID: 718080344}
   m_Layer: 5
   m_Name: Medium
   m_TagString: Untagged
@@ -284,7 +285,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 718080342}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 718080344}
+        m_TargetAssemblyTypeName: LevelSelect, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Medium
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &718080342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,6 +336,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 718080339}
   m_CullTransparentMesh: 1
+--- !u!114 &718080344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718080339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f257d85d6e8c3745b9b88bb83f7a7ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScoreEasy: {fileID: 0}
+  ScoreMedium: {fileID: 0}
+  ScoreHard: {fileID: 0}
 --- !u!1 &761282089
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,8 +409,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 35
+    m_Font: {fileID: 12800000, guid: 9b871e9c66680c842a2fe9d5d8efa8a4, type: 3}
+    m_FontSize: 48
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
@@ -414,6 +442,7 @@ GameObject:
   - component: {fileID: 781174045}
   - component: {fileID: 781174044}
   - component: {fileID: 781174043}
+  - component: {fileID: 781174046}
   m_Layer: 5
   m_Name: Easy
   m_TagString: Untagged
@@ -484,7 +513,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 781174044}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 781174046}
+        m_TargetAssemblyTypeName: LevelSelect, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Easy
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &781174044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -523,6 +564,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 781174041}
   m_CullTransparentMesh: 1
+--- !u!114 &781174046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781174041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f257d85d6e8c3745b9b88bb83f7a7ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScoreEasy: {fileID: 0}
+  ScoreMedium: {fileID: 0}
+  ScoreHard: {fileID: 0}
 --- !u!1 &786160375
 GameObject:
   m_ObjectHideFlags: 0
@@ -581,12 +637,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_Font: {fileID: 12800000, guid: 9b871e9c66680c842a2fe9d5d8efa8a4, type: 3}
+    m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 40
+    m_MinSize: 0
+    m_MaxSize: 48
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -613,6 +669,7 @@ GameObject:
   - component: {fileID: 943684585}
   - component: {fileID: 943684584}
   - component: {fileID: 943684583}
+  - component: {fileID: 943684586}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -685,6 +742,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &943684586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943684582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f257d85d6e8c3745b9b88bb83f7a7ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScoreEasy: {fileID: 786160377}
+  ScoreMedium: {fileID: 1270598047}
+  ScoreHard: {fileID: 679321123}
 --- !u!1 &979952452
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,6 +769,7 @@ GameObject:
   - component: {fileID: 979952456}
   - component: {fileID: 979952455}
   - component: {fileID: 979952454}
+  - component: {fileID: 979952457}
   m_Layer: 5
   m_Name: Hard
   m_TagString: Untagged
@@ -767,7 +840,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 979952455}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 979952457}
+        m_TargetAssemblyTypeName: LevelSelect, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Hard
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &979952455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -806,6 +891,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 979952452}
   m_CullTransparentMesh: 1
+--- !u!114 &979952457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979952452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f257d85d6e8c3745b9b88bb83f7a7ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScoreEasy: {fileID: 0}
+  ScoreMedium: {fileID: 0}
+  ScoreHard: {fileID: 0}
 --- !u!1 &1201005921
 GameObject:
   m_ObjectHideFlags: 0
@@ -939,8 +1039,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_Font: {fileID: 12800000, guid: 9b871e9c66680c842a2fe9d5d8efa8a4, type: 3}
+    m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -1276,3 +1376,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f257d85d6e8c3745b9b88bb83f7a7ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ScoreEasy: {fileID: 0}
+  ScoreMedium: {fileID: 0}
+  ScoreHard: {fileID: 0}

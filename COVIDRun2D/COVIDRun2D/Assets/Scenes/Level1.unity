@@ -669,6 +669,8 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
+  - component: {fileID: 519420035}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -696,8 +698,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ef7f08bcf70214dbe4f49a59f0481d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 2609104693786759200, guid: 737243162798fe846a6c541fadd950ad, type: 3}
-  respawnTime: 5
+  enemyPrefabSelector: 0
+  enemyPrefab:
+  - {fileID: 2609104693786759200, guid: 737243162798fe846a6c541fadd950ad, type: 3}
+  - {fileID: 8087062384769626027, guid: 27a2217fbbf41e34ab8854f3e3dcd70e, type: 3}
+  - {fileID: 8503115313286569864, guid: 6ced44e0a9bc8ca4aa4aa5c7fc0e2a0f, type: 3}
+  - {fileID: 5196360310407793095, guid: 0378bdb3b14b3b043a6df3e4a146b991, type: 3}
+  - {fileID: 7726186099992130701, guid: ee62d4dc63cf5444383e3c0b0813eeea, type: 3}
+  respawnTime: 3
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -769,6 +777,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerupPrefab: {fileID: 4045909765194598906, guid: 4071cf0526ff4d345af262ea6cba0aa5, type: 3}
   respawnTime: 10
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937799937df39ba4695f5bbc1102738b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extrasPrefabSelector: 0
+  extrasPrefab:
+  - {fileID: 8450682696995106140, guid: 85e7fb7b732bcbd4294c47be0ff82b42, type: 3}
+  - {fileID: 758601761930419282, guid: 261e25f4372446e4682ca426be17a354, type: 3}
+  - {fileID: 7700722938660757697, guid: 6dbe585cc89b066458c81998eeff396a, type: 3}
+  - {fileID: 4883133580983616875, guid: fd2141d66bf31884a82a855df3ee3251, type: 3}
+  - {fileID: 5082772497468367790, guid: 3204ff286722a45449f90b88aecdeb49, type: 3}
+  - {fileID: 7345902744484629048, guid: e11ceab5b094dea4792fce9abf44cf6c, type: 3}
+  respawnTime: 5
+--- !u!114 &519420035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2680852eea7aa0145a2a457f34182c2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeRemaining: 10
+  timerIsRunning: 0
+  gameSpeedInitial: 1
+  gameSpeedMultiplier: 0.05
 --- !u!1 &611188932
 GameObject:
   m_ObjectHideFlags: 0
@@ -1602,6 +1647,7 @@ GameObject:
   - component: {fileID: 1085582914}
   - component: {fileID: 1085582913}
   - component: {fileID: 1085582912}
+  - component: {fileID: 1085582916}
   m_Layer: 0
   m_Name: floor
   m_TagString: Untagged
@@ -1692,12 +1738,24 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085582911}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.23, y: -4.65, z: -0.2714081}
+  m_LocalPosition: {x: 0.23, y: -4.62, z: -0.2714081}
   m_LocalScale: {x: 20.767574, y: 1.5079224, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1085582916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085582911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fb8f290eb539fa47b4d70ca003d7120, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1153330179
 GameObject:
   m_ObjectHideFlags: 0
@@ -1780,7 +1838,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1153330182}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1930232067}
+        m_TargetAssemblyTypeName: GameOverScreen, Assembly-CSharp
+        m_MethodName: LevelSelect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1153330182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2358,7 +2428,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1538253024}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1930232067}
+        m_TargetAssemblyTypeName: GameOverScreen, Assembly-CSharp
+        m_MethodName: PlayAgain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1538253024
 MonoBehaviour:
   m_ObjectHideFlags: 0

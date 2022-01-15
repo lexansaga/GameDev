@@ -35,7 +35,7 @@ public class Character : MonoBehaviour
 
    public GameObject[] lifes;
 
-    int lifeCount = 1;
+    int lifeCount = 5;
     // Start is called before the first frame update
 
     public GameOverScreen gameOverScreen;
@@ -97,9 +97,9 @@ public class Character : MonoBehaviour
         }
 
 
-            scoreAdd = Random.Range(800, 1000);
-        scoreSub = Random.Range(-800, -1000);
-        scoreHolder = scoreAdd;
+      //  scoreAdd = Random.Range(800, 1000);
+       // scoreSub = Random.Range(-800, -1000);
+      //  scoreHolder = scoreAdd;
 
       //  Debug.Log("Score Add: " + scoreAdd);
        // Debug.Log("Score Sub: " + scoreSub);
@@ -141,12 +141,19 @@ public class Character : MonoBehaviour
         var colliderName = other.gameObject.name;
         if (colliderName.ToLower().Contains("virus"))
         {
-            Score(true);
-
+            // Character hit virus
+            Destroy(other.gameObject);
+            if(isShielded != true)
+            {
+                DecreaseLife(1);
+                int scoreRange = Random.Range(-800, -1000);
+                 ScoreCustom(false,0,scoreRange);
+            }
+          
         }
         if (colliderName.ToLower().Contains("shieldspawn"))
         {
-
+            // Character Hit Shields
             shield.SetActive(true);
             Debug.Log("I am a Shield");
             Destroy(other.gameObject);
@@ -154,6 +161,18 @@ public class Character : MonoBehaviour
             isShielded = true;
             StartCoroutine(ShieldObject(shield, speedDuration));
 
+        }
+        if(colliderName.ToLower().Contains("extras"))
+        {
+            //Character hit alcohol
+            Destroy(other.gameObject);
+             int scoreRange = Random.Range(800, 1000);
+            if(isShielded == true)
+            {
+            scoreRange *= 2;
+            }
+             Debug.Log("Score : "+scoreRange);
+            ScoreCustom(true,scoreRange,0);
         }
     }
 
@@ -185,6 +204,33 @@ public class Character : MonoBehaviour
 
 
     }
+     public void ScoreCustom(bool status,int ScoreAdd,int ScoreSub)
+    {   
+        if (status)
+        {
+            //  score += 1000;
+            //  textScore.text = score.ToString();
+            if (cScoreCounter != null)
+            {
+                StopCoroutine(cScoreCounter);
+            }
+            StartCoroutine(ScoreCounter(0.5f, ScoreAdd));
+
+          //  Debug.Log("Score Added : " + scoreHolder);
+        }
+        else
+        {
+            if (cScoreCounter != null)
+            {
+                StopCoroutine(cScoreCounter);
+            }
+            StartCoroutine(ScoreCounter(0.5f, ScoreSub));
+
+           // Debug.Log("Score Decrease : " + scoreSub);
+        }
+
+
+    }
     void ShieldMode()
     {
         if (shield.activeSelf)
@@ -199,14 +245,14 @@ public class Character : MonoBehaviour
         }
     }
 
-    void VaccineMOde()
+    void VaccineMode()
     {
 
     }
 
     IEnumerator ShieldObject(GameObject obj, float duration)
     {
-        scoreHolder = scoreAdd * multiplier;
+      //  scoreHolder = scoreAdd * multiplier;
         while (isShielded == true)
         {
             yield return new WaitForSeconds(duration);
@@ -246,7 +292,7 @@ public class Character : MonoBehaviour
 
                 }
                 score = previousScore;
-                textScore.text = previousScore.ToString();
+                textScore.text = score.ToString();
 
 
                 yield return wait;
@@ -264,8 +310,8 @@ public class Character : MonoBehaviour
                 {
                     previousScore = newScore;
                 }
-                score = previousScore;
-                textScore.text = previousScore.ToString();
+                score = score <= 0 ? 0 : previousScore;
+                textScore.text = score.ToString();
 
 
                 yield return wait;
@@ -282,9 +328,12 @@ public class Character : MonoBehaviour
             Destroy(lifes[lifeCount].gameObject);
             if (lifeCount < 1)
             {
+                lifeCount = 0;
                 anim.SetTrigger("isDead");
                 StartCoroutine(DeathAnimTrigger());
-                
+                // string difficulty = TextDB.ReadText(@"Assets\Resources\TextDB\LevelInfo.txt").Split(',')[3].Split(':')[1];
+                // Debug.Log(difficulty);
+                // TextDB.WriteString(@$"Assets\Resources\TextDB\Score{difficulty}.txt",textScore.text);
             }
         }
     }
@@ -295,8 +344,8 @@ public class Character : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         Debug.Log("You are dead!");
-                textScore.text = "";
-                gameOverScreen.Setup(score);
-                Time.timeScale = 0;
+          gameOverScreen.Setup(score);
+          textScore.text = "";
+          Time.timeScale = 0;
     }
 }
