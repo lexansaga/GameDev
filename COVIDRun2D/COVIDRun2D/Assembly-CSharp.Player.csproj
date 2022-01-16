@@ -26,7 +26,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
-    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,7 +35,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
-    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <NoConfig>true</NoConfig>
@@ -70,13 +70,13 @@
     <Compile Include="Assets\Script\LevelInfo.cs" />
     <Compile Include="Assets\GameOverScreenController.cs" />
     <Compile Include="Assets\onHitObject.cs" />
+    <Compile Include="Assets\Script\InGameSoundEffectScript.cs" />
     <Compile Include="Assets\Timer.cs" />
     <Compile Include="Assets\deployExtras.cs" />
     <Compile Include="Assets\Script\MusicPlay.cs" />
     <Compile Include="Assets\Script\DataSaver.cs" />
     <Compile Include="Assets\enemyAlcohol.cs" />
     <Compile Include="Assets\shieldSpawner.cs" />
-    <Compile Include="Assets\Script\InGameSoundEffectScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

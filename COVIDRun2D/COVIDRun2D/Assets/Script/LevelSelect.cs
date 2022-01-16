@@ -11,13 +11,13 @@ public class LevelSelect : MonoBehaviour
 {
    
 
-   public Text ScoreEasy,ScoreMedium,ScoreHard;
+   public TextMeshProUGUI ScoreEasy,ScoreMedium,ScoreHard;
 
- void Start()
+ public void Start()
  {
-        ScoreEasy.GetComponent<Text>().text =  GetHighestScore("Easy").ToString();
-        ScoreMedium.GetComponent<Text>().text =  GetHighestScore("Medium").ToString();
-        ScoreHard.GetComponent<Text>().text =  GetHighestScore("Hard").ToString();
+        ScoreEasy.text =  GetHighestScore("Easy").ToString();
+        ScoreMedium.text =  GetHighestScore("Medium").ToString();
+        ScoreHard.text =  GetHighestScore("Hard").ToString();
  }
     public void ReturnToMainMenu()
     {

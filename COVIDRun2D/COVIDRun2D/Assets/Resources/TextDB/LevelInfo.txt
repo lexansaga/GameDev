@@ -1,1 +1,1 @@
-EnemyRate:1,ExtrasRate:2.5,Speed:2,Level:Hard
+EnemyRate:3,ExtrasRate:5,Speed:1,Level:Easy

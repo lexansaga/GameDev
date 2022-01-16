@@ -708,13 +708,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="UnityEditor.UI.csproj">
-      <Project>{2AA47D49-4B66-2D8F-DB17-F15B75D95518}</Project>
-      <Name>UnityEditor.UI</Name>
-    </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.csproj">
       <Project>{8649F933-E0D4-8473-F001-D36A74B62E8B}</Project>
       <Name>UnityEngine.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEditor.UI.csproj">
+      <Project>{2AA47D49-4B66-2D8F-DB17-F15B75D95518}</Project>
+      <Name>UnityEditor.UI</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.TestRunner.csproj">
       <Project>{53D9F1C8-7CE6-DF3E-3067-FFF0E5A06F69}</Project>
