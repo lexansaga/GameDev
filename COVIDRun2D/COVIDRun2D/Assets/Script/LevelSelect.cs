@@ -15,7 +15,6 @@ public class LevelSelect : MonoBehaviour
 
  void Start()
  {
-   
         ScoreEasy.GetComponent<Text>().text =  GetHighestScore("Easy").ToString();
         ScoreMedium.GetComponent<Text>().text =  GetHighestScore("Medium").ToString();
         ScoreHard.GetComponent<Text>().text =  GetHighestScore("Hard").ToString();
@@ -23,8 +22,6 @@ public class LevelSelect : MonoBehaviour
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene("Home");
-
-
     }
 
    int GetHighestScore(string level)

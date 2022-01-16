@@ -63,10 +63,9 @@ public class Character : MonoBehaviour
 
         dirX = CrossPlatformInputManager.GetAxis("Horizontal") * moveSpeed;
 
-        if ((CrossPlatformInputManager.GetButtonDown("Jump") ||
-                        Input.GetKeyDown(KeyCode.UpArrow) ||
-                        Input.GetKeyDown(KeyCode.W)) && rb.velocity.y == 0)
+        if ((CrossPlatformInputManager.GetButtonDown("Jump")) && rb.velocity.y == 0)
         {
+            InGameSoundEffectScript.PlaySound("jump");
             rb.AddForce(Vector2.up * 700f);
         }
 
@@ -142,6 +141,7 @@ public class Character : MonoBehaviour
         if (colliderName.ToLower().Contains("virus"))
         {
             // Character hit virus
+            InGameSoundEffectScript.PlaySound("hurt");
             Destroy(other.gameObject);
             if(isShielded != true)
             {
@@ -153,6 +153,7 @@ public class Character : MonoBehaviour
         }
         if (colliderName.ToLower().Contains("shieldspawn"))
         {
+             InGameSoundEffectScript.PlaySound("pop");
             // Character Hit Shields
             shield.SetActive(true);
             Debug.Log("I am a Shield");
@@ -165,6 +166,7 @@ public class Character : MonoBehaviour
         if(colliderName.ToLower().Contains("extras"))
         {
             //Character hit alcohol
+            InGameSoundEffectScript.PlaySound("powerup");
             Destroy(other.gameObject);
              int scoreRange = Random.Range(800, 1000);
             if(isShielded == true)
@@ -259,6 +261,7 @@ public class Character : MonoBehaviour
             obj.SetActive(false);
             scoreHolder = scoreAdd;
             isShielded = false;
+             InGameSoundEffectScript.PlaySound("pop");
             //  Debug.Log("Shield " + isShielded);
 
         }
